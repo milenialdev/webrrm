@@ -2,7 +2,7 @@ backend:
   name: github
   repo: milenialdev/webrrm
   branch: main
-  base_url: https://REPLACE-WITH-DEPLOYED-URL
+  base_url: https://webrrm.carlosbenitoandev.workers.dev
   auth_endpoint: api/auth
 
 media_folder: "assets/uploads"

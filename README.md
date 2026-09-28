@@ -2,7 +2,7 @@
 
 ## Com editar el contingut de la web (per a l'equip de l'empresa)
 
-1. Entra a **[URL del desplegament]/admin** (o al domini propi, quan el tingueu).
+1. Entra a **https://webrrm.carlosbenitoandev.workers.dev/admin** (o al domini propi, quan el tingueu).
 2. Inicia sessió amb el compte de GitHub de l'empresa.
 3. A l'esquerra veuràs les seccions editables: *Textos generals*, *Serveis* i *Projectes*.
 4. Edita el text o puja fotos noves i prem **Publish** (o **Save** + **Publish**).
