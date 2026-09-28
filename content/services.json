@@ -5,51 +5,46 @@
   "subtitle": "Oferim solucions integrals per a la rehabilitació del teu habitatge. Qualitat garantida i preus justos.",
   "featured": {
     "title": "Rehabilitació de Façanes",
+    "icon": "building",
     "items": ["Rehabilitació i restauració.", "Rehabilitació energètica i aïllament tèrmic."],
     "link": "Saber-ne més",
     "image": ""
   },
   "items": [
     {
-      "title": "Reformes Integrals",
-      "text": "Transformem el teu espai de dalt a baix. Gestió completa.",
-      "link": "Veure",
-      "style": "dark-teal"
-    },
-    {
       "title": "Impermeabilització",
+      "icon": "droplet",
       "text": "Terrats i cobertes protegits contra humitat i filtracions.",
-      "link": "Veure",
       "style": "light"
     },
     {
       "title": "Aïllament Tèrmic SATE",
+      "icon": "sun",
       "text": "Redueix fins al 40% el consum energètic.",
-      "link": "Veure",
       "style": "terracotta"
     },
     {
       "title": "Comunitats de Veïns",
+      "icon": "people",
       "text": "Especialistes en edificis plurifamiliars. Coordinació total.",
-      "link": "Veure",
       "style": "light"
     },
     {
       "title": "Gestió de Permisos",
+      "icon": "document",
       "text": "Ens encarreguem de tots els tràmits i llicències.",
-      "link": "Veure",
       "style": "dark-teal"
     },
     {
       "title": "Estructures",
+      "icon": "beam",
       "text": "Reforç i consolidació d'estructures d'edificis.",
-      "link": "Veure",
       "style": "light"
     },
     {
       "title": "Pintura",
+      "icon": "brush",
       "text": "Pintura interior i exterior amb acabats professionals.",
-      "link": "Veure",
       "style": "terracotta"
     }
   ]

@@ -16,6 +16,7 @@
     "title_highlight": "amb més de 20 anys d'experiència",
     "text": "Fundada a Badalona per professionals de la rehabilitació amb més de 20 anys d'experiència. Hem crescut construint relacions de confiança. No subcontractem: el nostre equip ho fa tot.",
     "quote": "Construïm confiança, obra a obra.",
+    "photo": { "label": "Treballadors a l'obra", "image": "" },
     "stats": [
       { "value": "+500", "label": "Projectes completats" },
       { "value": "98%", "label": "Clients satisfets" },
@@ -43,7 +44,7 @@
     "phone": "689242968",
     "email": "rehabilitacionsruizmarin@gmail.com",
     "hours": "Dl-Dv 8h-18h",
-    "form_note": "Resposta garantida en 24 hores · Pressupost gratuït"
+    "form_note": "Pressupost gratuït"
   },
   "footer": {
     "company": "Ruíz Marín",

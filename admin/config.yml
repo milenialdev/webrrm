@@ -38,6 +38,12 @@ collections:
               - { label: "Títol destacat", name: "title_highlight", widget: "string" }
               - { label: "Text", name: "text", widget: "text" }
               - { label: "Frase destacada", name: "quote", widget: "string" }
+              - label: "Foto (treballadors a l'obra)"
+                name: "photo"
+                widget: "object"
+                fields:
+                  - { label: "Etiqueta (text mentre no hi ha foto)", name: "label", widget: "string" }
+                  - { label: "Foto", name: "image", widget: "image", required: false }
               - label: "Xifres"
                 name: "stats"
                 widget: "list"
@@ -94,6 +100,17 @@ collections:
             widget: "object"
             fields:
               - { label: "Títol", name: "title", widget: "string" }
+              - label: "Icona"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "Edifici", value: "building" }
+                  - { label: "Gota (impermeabilització)", value: "droplet" }
+                  - { label: "Sol (aïllament tèrmic)", value: "sun" }
+                  - { label: "Persones (comunitats)", value: "people" }
+                  - { label: "Document (permisos)", value: "document" }
+                  - { label: "Pot de pintura", value: "brush" }
+                  - { label: "Biga (estructures)", value: "beam" }
               - { label: "Punts (llista curta)", name: "items", widget: "list" }
               - { label: "Text enllaç", name: "link", widget: "string" }
               - { label: "Imatge", name: "image", widget: "image", required: false }
@@ -102,8 +119,18 @@ collections:
             widget: "list"
             fields:
               - { label: "Títol", name: "title", widget: "string" }
+              - label: "Icona"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "Edifici", value: "building" }
+                  - { label: "Gota (impermeabilització)", value: "droplet" }
+                  - { label: "Sol (aïllament tèrmic)", value: "sun" }
+                  - { label: "Persones (comunitats)", value: "people" }
+                  - { label: "Document (permisos)", value: "document" }
+                  - { label: "Pot de pintura", value: "brush" }
+                  - { label: "Biga (estructures)", value: "beam" }
               - { label: "Text", name: "text", widget: "text" }
-              - { label: "Text enllaç", name: "link", widget: "string" }
               - label: "Estil de la targeta"
                 name: "style"
                 widget: "select"
