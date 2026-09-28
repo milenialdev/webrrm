@@ -5,3 +5,6 @@ compatibility_date = "2026-09-28"
 [assets]
 directory = "."
 binding = "ASSETS"
+
+[vars]
+OAUTH_CLIENT_ID = "Ov23liBwpk435avBsfpL"
