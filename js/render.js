@@ -30,11 +30,10 @@ function renderServices(data) {
     `${data.title} <em class="text-teal">${data.title_highlight}</em>`;
   document.getElementById("services-subtitle").textContent = data.subtitle;
 
-  const grid = document.getElementById("services-grid");
-  grid.innerHTML = "";
-
+  const featuredWrap = document.getElementById("services-featured");
+  featuredWrap.innerHTML = "";
   const f = data.featured;
-  grid.appendChild(el(`
+  featuredWrap.appendChild(el(`
     <article class="card card-featured">
       <div class="card-featured-img" style="${f.image ? `background-image:url(${f.image})` : ""}">${f.image ? "" : "[ Imatge de façana rehabilitada ]"}</div>
       <div class="card-featured-body">
@@ -46,8 +45,10 @@ function renderServices(data) {
     </article>
   `));
 
+  const track = document.getElementById("services-carousel-track");
+  track.innerHTML = "";
   data.items.forEach(item => {
-    grid.appendChild(el(`
+    track.appendChild(el(`
       <article class="card card-${item.style}">
         <div>
           <div class="card-icon">${item.style === "light" ? "◆" : "✦"}</div>
@@ -59,17 +60,10 @@ function renderServices(data) {
     `));
   });
 
-  const x = data.extra;
-  grid.appendChild(el(`
-    <article class="card card-extra">
-      <div class="count">${x.count}</div>
-      <div>
-        <h4>${x.title}</h4>
-        <p>${x.text}</p>
-      </div>
-      <a href="#contacte" class="btn btn-primary">${x.cta}</a>
-    </article>
-  `));
+  const prevBtn = document.querySelector(".carousel-prev");
+  const nextBtn = document.querySelector(".carousel-next");
+  prevBtn.addEventListener("click", () => track.scrollBy({ left: -300, behavior: "smooth" }));
+  nextBtn.addEventListener("click", () => track.scrollBy({ left: 300, behavior: "smooth" }));
 }
 
 function renderAbout(site) {
@@ -78,7 +72,6 @@ function renderAbout(site) {
   document.getElementById("about-title").innerHTML = `${a.title} <em>${a.title_highlight}</em>`;
   document.getElementById("about-text").textContent = a.text;
   document.getElementById("about-quote").textContent = `"${a.quote}"`;
-  document.getElementById("about-cta").textContent = a.cta;
 
   const stats = document.getElementById("about-stats");
   stats.innerHTML = "";
@@ -99,7 +92,10 @@ function renderProjects(data) {
 
   const grid = document.getElementById("projects-grid");
   grid.innerHTML = "";
-  data.items.forEach(p => {
+  const latest = [...data.items]
+    .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))
+    .slice(0, 3);
+  latest.forEach(p => {
     grid.appendChild(el(`
       <article class="project-card">
         <div class="project-img" style="${p.image ? `background-image:url(${p.image})` : ""}">${p.image ? "" : "[ Foto del projecte ]"}</div>

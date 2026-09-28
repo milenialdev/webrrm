@@ -33,12 +33,24 @@
       "text": "Especialistes en edificis plurifamiliars. Coordinació total.",
       "link": "Veure",
       "style": "light"
+    },
+    {
+      "title": "Gestió de Permisos",
+      "text": "Ens encarreguem de tots els tràmits i llicències.",
+      "link": "Veure",
+      "style": "dark-teal"
+    },
+    {
+      "title": "Estructures",
+      "text": "Reforç i consolidació d'estructures d'edificis.",
+      "link": "Veure",
+      "style": "light"
+    },
+    {
+      "title": "Pintura",
+      "text": "Pintura interior i exterior amb acabats professionals.",
+      "link": "Veure",
+      "style": "terracotta"
     }
-  ],
-  "extra": {
-    "count": "+6",
-    "title": "Serveis Especialitzats",
-    "text": "Gestió de permisos, estructures, pintura i molt més.",
-    "cta": "Tots els serveis"
-  }
+  ]
 }

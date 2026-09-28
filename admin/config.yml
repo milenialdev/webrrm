@@ -44,7 +44,6 @@ collections:
                 fields:
                   - { label: "Valor", name: "value", widget: "string" }
                   - { label: "Etiqueta", name: "label", widget: "string" }
-              - { label: "Text botó", name: "cta", widget: "string" }
           - label: "Secció Procés"
             name: "process"
             widget: "object"
@@ -109,14 +108,6 @@ collections:
                 name: "style"
                 widget: "select"
                 options: ["light", "dark-teal", "terracotta"]
-          - label: "Targeta '+Serveis'"
-            name: "extra"
-            widget: "object"
-            fields:
-              - { label: "Número", name: "count", widget: "string" }
-              - { label: "Títol", name: "title", widget: "string" }
-              - { label: "Text", name: "text", widget: "text" }
-              - { label: "Text botó", name: "cta", widget: "string" }
 
   - name: "projects"
     label: "Projectes"
@@ -136,4 +127,9 @@ collections:
               - { label: "Títol", name: "title", widget: "string" }
               - { label: "Població", name: "location", widget: "string" }
               - { label: "Categoria", name: "category", widget: "string" }
+              - { label: "Data", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true }
+              - label: "Etiquetes (per filtrar a 'Tots els projectes')"
+                name: "tags"
+                widget: "list"
+                default: []
               - { label: "Foto", name: "image", widget: "image", required: false }

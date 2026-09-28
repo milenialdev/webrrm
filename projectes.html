@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projectes — Rehabilitacions Ruíz Marín</title>
+<meta name="description" content="Tots els projectes de rehabilitació i reforma fets per Rehabilitacions Ruíz Marín a Badalona i rodalies.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html#inici" class="logo">
+      <div class="logo-mark">RM</div>
+      <div>
+        <div class="logo-text-sub">Rehabilitacions</div>
+        <div class="logo-text-main">Ruíz Marín</div>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#inici">Inici</a>
+      <a href="index.html#serveis">Serveis</a>
+      <a href="projectes.html">Projectes</a>
+      <a href="index.html#nosaltres">Nosaltres</a>
+      <a href="index.html#contacte" class="btn btn-primary nav-cta-mobile">Demana pressupost</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="index.html#contacte" class="btn btn-primary">Demana pressupost</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag-pill" id="projects-tag"></span>
+        <h2 id="projects-title"></h2>
+        <p id="projects-subtitle"></p>
+      </div>
+      <div class="tag-filters" id="tag-filters"></div>
+      <div class="projects-grid" id="projects-grid-all"></div>
+      <p id="projects-empty" class="projects-empty" hidden>No hi ha projectes amb aquesta etiqueta.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3 id="footer-company"></h3>
+        <p id="footer-description"></p>
+      </div>
+      <div class="footer-col">
+        <h4>Serveis</h4>
+        <ul>
+          <li><a href="index.html#serveis">Rehabilitació Façanes</a></li>
+          <li><a href="index.html#serveis">Reformes Integrals</a></li>
+          <li><a href="index.html#serveis">Impermeabilització</a></li>
+          <li><a href="index.html#serveis">Aïllament SATE</a></li>
+          <li><a href="index.html#serveis">Comunitats</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="index.html#nosaltres">Qui som</a></li>
+          <li><a href="projectes.html">Projectes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacte</h4>
+        <ul id="footer-contact"></ul>
+      </div>
+    </div>
+    <div class="footer-bottom" id="footer-legal"></div>
+  </div>
+</footer>
+
+<script src="js/projects-page.js" type="module"></script>
+</body>
+</html>
