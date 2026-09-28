@@ -1,0 +1,26 @@
+{
+  "tag": "Projectes",
+  "title": "Feina feta,",
+  "title_highlight": "resultats reals",
+  "subtitle": "Alguns dels nostres treballs més recents a Badalona i rodalies.",
+  "items": [
+    {
+      "title": "Rehabilitació de façana",
+      "location": "Badalona",
+      "category": "Façanes",
+      "image": ""
+    },
+    {
+      "title": "Reforma integral d'habitatge",
+      "location": "Badalona",
+      "category": "Reformes",
+      "image": ""
+    },
+    {
+      "title": "Impermeabilització de terrat",
+      "location": "Sant Adrià de Besòs",
+      "category": "Impermeabilització",
+      "image": ""
+    }
+  ]
+}

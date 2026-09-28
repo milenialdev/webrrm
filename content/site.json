@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "title_line1": "Tens un",
+    "title_highlight1": "projecte",
+    "title_line2": "en ment? Nosaltres",
+    "title_line3": "tenim la",
+    "title_highlight2": "solució",
+    "subtitle": "La teva llar, la nostra passió. El nostre equip està a la teva disposició per assessorar-te i ajudar-te a fer realitat les teves idees.",
+    "cta_primary": "Parlem del teu projecte",
+    "cta_secondary": "Veure projectes",
+    "image": ""
+  },
+  "about": {
+    "tag": "Qui som",
+    "title": "Som una empresa de professionals",
+    "title_highlight": "amb més de 20 anys d'experiència",
+    "text": "Fundada a Badalona per professionals de la rehabilitació amb més de 20 anys d'experiència. Hem crescut construint relacions de confiança. No subcontractem: el nostre equip ho fa tot.",
+    "quote": "Construïm confiança, obra a obra.",
+    "stats": [
+      { "value": "+500", "label": "Projectes completats" },
+      { "value": "98%", "label": "Clients satisfets" },
+      { "value": "20", "label": "Anys d'experiència" },
+      { "value": "0", "label": "Subcontractes" }
+    ],
+    "cta": "Conèixer l'equip"
+  },
+  "process": {
+    "tag": "Com treballem",
+    "title": "Un procés senzill",
+    "title_highlight": "i transparent",
+    "steps": [
+      { "number": "1", "title": "Consulta inicial", "text": "Visitem l'obra per valorar-la in situ." },
+      { "number": "2", "title": "Pressupost detallat", "text": "En 48 hores, sense costos ocults." },
+      { "number": "3", "title": "Execució de l'obra", "text": "El nostre equip treballa amb eficiència." },
+      { "number": "4", "title": "Lliurament i garantia", "text": "Revisem tots els detalls i emetem el certificat." }
+    ]
+  },
+  "contact": {
+    "tag": null,
+    "title": "Parlem del teu",
+    "title_highlight": "projecte.",
+    "text": "El pressupost és gratuït i sense compromís. Et contactem en menys de 24 hores.",
+    "address": "C/ General Weyler 128/130 · 08917 · BADALONA",
+    "phone": "689242968",
+    "email": "rehabilitacionsruizmarin@gmail.com",
+    "hours": "Dl-Dv 8h-18h",
+    "form_note": "Resposta garantida en 24 hores · Pressupost gratuït"
+  },
+  "footer": {
+    "company": "Ruíz Marín",
+    "description": "Rehabilitacions i reformes integrals a Badalona i rodalies.",
+    "legal": "© 2026 Rehabilitacions Ruíz Marín. Tots els drets reservats."
+  }
+}

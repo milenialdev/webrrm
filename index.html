@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rehabilitacions Ruíz Marín — Badalona</title>
+<meta name="description" content="Rehabilitació de façanes, reformes integrals, impermeabilització i aïllament tèrmic a Badalona i rodalies. Més de 20 anys d'experiència.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="#inici" class="logo">
+      <div class="logo-mark">RM</div>
+      <div>
+        <div class="logo-text-sub">Rehabilitacions</div>
+        <div class="logo-text-main">Ruíz Marín</div>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#inici">Inici</a>
+      <a href="#serveis">Serveis</a>
+      <a href="#projectes">Projectes</a>
+      <a href="#nosaltres">Nosaltres</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contacte" class="btn btn-primary">Demana pressupost</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="inici">
+    <div class="hero-copy">
+      <h1 id="hero-title"></h1>
+      <p id="hero-subtitle"></p>
+      <div class="hero-actions">
+        <a href="#contacte" class="btn btn-primary" id="hero-cta-primary"></a>
+        <a href="#projectes" class="btn btn-outline" id="hero-cta-secondary"></a>
+      </div>
+    </div>
+    <div class="hero-image" id="hero-image">[ Substituir per foto de projecte ]</div>
+  </section>
+
+  <!-- SERVEIS -->
+  <section class="section" id="serveis">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag-pill" id="services-tag"></span>
+        <h2 id="services-title"></h2>
+        <p id="services-subtitle"></p>
+      </div>
+      <div class="services-grid" id="services-grid"></div>
+    </div>
+  </section>
+
+  <!-- NOSALTRES -->
+  <section class="about-section" id="nosaltres">
+    <div class="container about-grid">
+      <div class="about-gallery">
+        <div class="g-img g-teal"></div>
+        <div class="g-img g-forest"></div>
+        <div class="g-img g-brown"></div>
+        <div class="g-img g-teal2"></div>
+      </div>
+      <div class="about-copy">
+        <span class="tag-pill" id="about-tag"></span>
+        <h2 id="about-title"></h2>
+        <p id="about-text"></p>
+        <div class="about-quote" id="about-quote"></div>
+        <div class="about-stats" id="about-stats"></div>
+        <a href="#contacte" class="btn btn-primary" id="about-cta"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTES -->
+  <section class="section" id="projectes">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag-pill" id="projects-tag"></span>
+        <h2 id="projects-title"></h2>
+        <p id="projects-subtitle"></p>
+      </div>
+      <div class="projects-grid" id="projects-grid"></div>
+    </div>
+  </section>
+
+  <!-- PROCÉS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag-pill" id="process-tag"></span>
+        <h2 id="process-title"></h2>
+      </div>
+      <div class="process-steps" id="process-steps"></div>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section class="contact-section" id="contacte">
+    <div class="container contact-grid">
+      <div class="contact-copy">
+        <h2 id="contact-title"></h2>
+        <p id="contact-text"></p>
+        <div id="contact-items"></div>
+      </div>
+      <div class="contact-form-card">
+        <h3>Escriu-nos</h3>
+        <form id="contact-form">
+          <input type="hidden" name="access_key" value="609eb965-7489-457e-9d6c-44eeb781dd1e">
+          <input type="hidden" name="subject" value="Nou missatge des de la web — Rehabilitacions Ruíz Marín">
+          <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Nom i cognoms</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-field">
+              <label for="phone">Telèfon</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+          </div>
+          <div class="form-field" style="margin-bottom:16px;">
+            <label for="email">Correu electrònic</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-field" style="margin-bottom:16px;">
+            <label for="service">Tipus de servei</label>
+            <input type="text" id="service" name="Tipus de servei" placeholder="Ex: Rehabilitació de façana">
+          </div>
+          <div class="form-field">
+            <label for="message">Missatge</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <div class="form-footer">
+            <button type="submit" class="btn btn-primary" id="form-submit">Enviar missatge</button>
+            <span class="form-note" id="contact-form-note"></span>
+          </div>
+          <div class="form-status" id="form-status" role="status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3 id="footer-company"></h3>
+        <p id="footer-description"></p>
+      </div>
+      <div class="footer-col">
+        <h4>Serveis</h4>
+        <ul>
+          <li><a href="#serveis">Rehabilitació Façanes</a></li>
+          <li><a href="#serveis">Reformes Integrals</a></li>
+          <li><a href="#serveis">Impermeabilització</a></li>
+          <li><a href="#serveis">Aïllament SATE</a></li>
+          <li><a href="#serveis">Comunitats</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#nosaltres">Qui som</a></li>
+          <li><a href="#nosaltres">L'equip</a></li>
+          <li><a href="#projectes">Projectes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacte</h4>
+        <ul id="footer-contact"></ul>
+      </div>
+    </div>
+    <div class="footer-bottom" id="footer-legal"></div>
+  </div>
+</footer>
+
+<script src="js/render.js" type="module"></script>
+</body>
+</html>

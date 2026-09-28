@@ -1,0 +1,139 @@
+backend:
+  name: github
+  repo: milenialdev/webrrm
+  branch: main
+  base_url: https://webrrm.pages.dev
+  auth_endpoint: api/auth
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "site"
+    label: "Textos generals"
+    files:
+      - name: "general"
+        label: "Inici, Nosaltres, Procés i Contacte"
+        file: "content/site.json"
+        fields:
+          - label: "Portada (Hero)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Text 1 (abans de 'projecte')", name: "title_line1", widget: "string" }
+              - { label: "Paraula destacada 1", name: "title_highlight1", widget: "string" }
+              - { label: "Text 2 (després de 'projecte')", name: "title_line2", widget: "string" }
+              - { label: "Text 3 (abans de 'solució')", name: "title_line3", widget: "string" }
+              - { label: "Paraula destacada 2", name: "title_highlight2", widget: "string" }
+              - { label: "Subtítol", name: "subtitle", widget: "text" }
+              - { label: "Text botó principal", name: "cta_primary", widget: "string" }
+              - { label: "Text botó secundari", name: "cta_secondary", widget: "string" }
+              - { label: "Imatge de portada", name: "image", widget: "image", required: false }
+          - label: "Secció Nosaltres"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta petita", name: "tag", widget: "string" }
+              - { label: "Títol", name: "title", widget: "string" }
+              - { label: "Títol destacat", name: "title_highlight", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Frase destacada", name: "quote", widget: "string" }
+              - label: "Xifres"
+                name: "stats"
+                widget: "list"
+                fields:
+                  - { label: "Valor", name: "value", widget: "string" }
+                  - { label: "Etiqueta", name: "label", widget: "string" }
+              - { label: "Text botó", name: "cta", widget: "string" }
+          - label: "Secció Procés"
+            name: "process"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta petita", name: "tag", widget: "string" }
+              - { label: "Títol", name: "title", widget: "string" }
+              - { label: "Títol destacat", name: "title_highlight", widget: "string" }
+              - label: "Passos"
+                name: "steps"
+                widget: "list"
+                fields:
+                  - { label: "Número", name: "number", widget: "string" }
+                  - { label: "Títol", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "string" }
+          - label: "Secció Contacte"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Títol", name: "title", widget: "string" }
+              - { label: "Títol destacat", name: "title_highlight", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Adreça", name: "address", widget: "string" }
+              - { label: "Telèfon", name: "phone", widget: "string" }
+              - { label: "Correu", name: "email", widget: "string" }
+              - { label: "Horari", name: "hours", widget: "string" }
+              - { label: "Nota sota el formulari", name: "form_note", widget: "string" }
+          - label: "Peu de pàgina"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Nom empresa", name: "company", widget: "string" }
+              - { label: "Descripció", name: "description", widget: "text" }
+              - { label: "Text legal", name: "legal", widget: "string" }
+
+  - name: "services"
+    label: "Serveis"
+    files:
+      - name: "services"
+        label: "Llista de serveis"
+        file: "content/services.json"
+        fields:
+          - { label: "Etiqueta petita", name: "tag", widget: "string" }
+          - { label: "Títol", name: "title", widget: "string" }
+          - { label: "Títol destacat", name: "title_highlight", widget: "string" }
+          - { label: "Subtítol", name: "subtitle", widget: "text" }
+          - label: "Servei destacat (targeta gran)"
+            name: "featured"
+            widget: "object"
+            fields:
+              - { label: "Títol", name: "title", widget: "string" }
+              - { label: "Punts (llista curta)", name: "items", widget: "list" }
+              - { label: "Text enllaç", name: "link", widget: "string" }
+              - { label: "Imatge", name: "image", widget: "image", required: false }
+          - label: "Altres serveis"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Títol", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Text enllaç", name: "link", widget: "string" }
+              - label: "Estil de la targeta"
+                name: "style"
+                widget: "select"
+                options: ["light", "dark-teal", "terracotta"]
+          - label: "Targeta '+Serveis'"
+            name: "extra"
+            widget: "object"
+            fields:
+              - { label: "Número", name: "count", widget: "string" }
+              - { label: "Títol", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Text botó", name: "cta", widget: "string" }
+
+  - name: "projects"
+    label: "Projectes"
+    files:
+      - name: "projects"
+        label: "Galeria de projectes"
+        file: "content/projects.json"
+        fields:
+          - { label: "Etiqueta petita", name: "tag", widget: "string" }
+          - { label: "Títol", name: "title", widget: "string" }
+          - { label: "Títol destacat", name: "title_highlight", widget: "string" }
+          - { label: "Subtítol", name: "subtitle", widget: "text" }
+          - label: "Projectes"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Títol", name: "title", widget: "string" }
+              - { label: "Població", name: "location", widget: "string" }
+              - { label: "Categoria", name: "category", widget: "string" }
+              - { label: "Foto", name: "image", widget: "image", required: false }
