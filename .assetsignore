@@ -1,0 +1,7 @@
+wrangler.toml
+worker.js
+scripts/
+.claude/
+agents.md
+README.md
+node_modules/

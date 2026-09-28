@@ -4,8 +4,8 @@ Documento guía paso a paso para construir y desplegar la web. Pensado para que 
 
 ## Stack decidido
 
-- **Hosting**: Cloudflare Pages (gratis, `*.pages.dev`; dominio propio se añadirá más adelante).
-- **Contenido editable**: Decap CMS (panel en `/admin`, login con GitHub), backend git → cada guardado en el CMS crea un commit que Cloudflare Pages redeploya automáticamente.
+- **Hosting**: Cloudflare Workers con "Static Assets" (gratis, `*.workers.dev`; dominio propio se añadirá más adelante). Cloudflare ha unificado "Pages" dentro de "Workers" en su dashboard nuevo — ya no existe el flujo clásico de Pages, así que el sitio se despliega como un Worker (`wrangler.toml` + `worker.js`) que sirve los archivos estáticos y gestiona las rutas `/api/auth` y `/api/callback` (antes esto se hacía con Cloudflare Pages Functions en `/functions`, ahora retirado).
+- **Contenido editable**: Decap CMS (panel en `/admin`, login con GitHub), backend git → cada guardado en el CMS crea un commit que Cloudflare vuelve a desplegar automáticamente.
 - **Formulario de contacto**: Web3Forms (gratis, sin backend propio, envía directo al email de la empresa). Config se hace una vez; después no requiere mantenimiento ni de ellos ni de nosotros.
 - **Código**: HTML + CSS (Tailwind) estático. Sin framework pesado — mantiene el repo simple para que Decap CMS y Cloudflare Pages funcionen sin fricción.
 - **Repo**: GitHub (necesario tanto para Cloudflare Pages como para el login de Decap CMS).
@@ -59,16 +59,19 @@ Todo el texto e imágenes de esta maquetación deben salir de los archivos en `/
   - Proyectos/galería (título, fotos, descripción corta).
   - Textos generales (hero, quiénes somos, cifras, proceso).
   - Datos de contacto (dirección, teléfono, email, horario).
-- Configurar OAuth para GitHub: Decap CMS con backend `github` necesita un proveedor OAuth. Usar el proxy gratuito que ofrece Cloudflare Pages/Netlify o, si no, montar uno mínimo con una Cloudflare Pages Function (`/api/auth`, `/api/callback`) usando un GitHub OAuth App (esto lo crea el usuario en GitHub Settings → Developer settings, es gratis).
+- Configurar OAuth para GitHub: Decap CMS con backend `github` necesita un proveedor OAuth. Implementado en `worker.js`, que gestiona las rutas `/api/auth` y `/api/callback` usando un GitHub OAuth App (esto lo crea el usuario en GitHub Settings → Developer settings, es gratis) y las variables de entorno `OAUTH_CLIENT_ID` / `OAUTH_CLIENT_SECRET` configuradas en el proyecto de Cloudflare.
 - Documentar en el README exactamente cómo entrar a `/admin` y qué se puede editar.
 
-## Paso 5 — Desplegar en Cloudflare Pages
+## Paso 5 — Desplegar en Cloudflare (Workers + Static Assets)
 
 1. Subir el repo a GitHub (requiere que el usuario tenga la cuenta creada del paso previo).
-2. En Cloudflare dashboard: Pages → Create a project → Connect to Git → seleccionar el repo.
-3. Build settings: sin framework (o el build command de Tailwind si aplica), output directory `/` (o `dist` si hay build).
-4. Deploy. Verificar la URL `*.pages.dev`.
-5. Probar en producción: navegación, formulario, panel `/admin` con login real.
+2. En Cloudflare dashboard: Compute → Workers & Pages → Create → conectar el repo `milenialdev/webrrm`.
+3. En "Set up your application": Build command vacío, Deploy command `npx wrangler deploy` (por defecto). El `wrangler.toml` del repo ya define los static assets y el Worker que los sirve.
+4. Deploy. Verificar la URL `*.workers.dev` resultante.
+5. Actualizar `admin/config.yml` (`base_url`) con la URL real.
+6. Crear la GitHub OAuth App (Homepage URL y Callback URL = esa URL + `/api/callback`) y añadir `OAUTH_CLIENT_ID` / `OAUTH_CLIENT_SECRET` como variables de entorno del proyecto en Cloudflare.
+7. Añadir esa URL a los dominios permitidos de la clave de Web3Forms.
+8. Probar en producción: navegación, formulario, panel `/admin` con login real.
 
 ## Paso 6 — Entrega y prueba con el usuario
 
