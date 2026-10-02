@@ -1,4 +1,11 @@
-import { loadJSON, el, esc, withSlugs, setupCarousel, setupMobileNav, fillFooter } from "./projects-shared.js";
+import { loadJSON, el, esc, withSlugs, setupCarousel, setupMobileNav, fillFooter, validImages, watchBrokenImages } from "./projects-shared.js";
+
+let activeCarousel = null;
+document.addEventListener("keydown", e => {
+  if (!activeCarousel) return;
+  if (e.key === "ArrowLeft") activeCarousel.go(activeCarousel.current() - 1);
+  if (e.key === "ArrowRight") activeCarousel.go(activeCarousel.current() + 1);
+});
 
 function formatDate(date) {
   if (!date) return "";
@@ -8,7 +15,8 @@ function formatDate(date) {
 }
 
 function renderGallery(p) {
-  const images = p.images || [];
+  const images = validImages(p);
+  activeCarousel = null;
   if (!images.length) {
     return el(`<div class="gallery gallery-empty">[ Aquest projecte encara no té fotos ]</div>`);
   }
@@ -45,11 +53,9 @@ function renderGallery(p) {
       thumbBtns.forEach((b, n) => b.classList.toggle("active", n === i));
     });
     thumbBtns.forEach((b, n) => b.addEventListener("click", () => carousel.go(n)));
-    document.addEventListener("keydown", e => {
-      if (e.key === "ArrowLeft") carousel.go(carousel.current() - 1);
-      if (e.key === "ArrowRight") carousel.go(carousel.current() + 1);
-    });
+    activeCarousel = carousel;
   }
+  watchBrokenImages(wrap, () => wrap.replaceWith(renderGallery(p)));
   return wrap;
 }
 

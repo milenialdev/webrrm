@@ -54,8 +54,27 @@ export function setupCarousel(root, onChange) {
   return { go, current, count };
 }
 
+const brokenImages = new Set();
+
+export function validImages(p) {
+  return (p.images || []).filter(src => !brokenImages.has(src));
+}
+
+// Si una foto ya no existe (p. ex. s'ha esborrat del CMS), la descarta i torna a dibuixar amb les que queden.
+export function watchBrokenImages(root, redraw) {
+  let fired = false;
+  root.querySelectorAll("img").forEach(img => {
+    img.addEventListener("error", () => {
+      brokenImages.add(img.getAttribute("src"));
+      if (fired) return;
+      fired = true;
+      redraw();
+    }, { once: true });
+  });
+}
+
 export function projectCard(p) {
-  const images = p.images || [];
+  const images = validImages(p);
   const multi = images.length > 1;
   const slides = images.length
     ? images.map((src, i) => `<div class="slide"><img src="${esc(src)}" alt="${esc(p.title)} - foto ${i + 1}" loading="lazy"></div>`).join("")
@@ -84,6 +103,7 @@ export function projectCard(p) {
   const track = card.querySelector(".carousel-slides");
   track.addEventListener("click", () => { location.href = link.href; });
   if (multi) setupCarousel(card.querySelector(".project-carousel"));
+  watchBrokenImages(card, () => card.replaceWith(projectCard(p)));
   return card;
 }
 
