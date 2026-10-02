@@ -58,8 +58,8 @@ export function projectCard(p) {
   const images = p.images || [];
   const multi = images.length > 1;
   const slides = images.length
-    ? images.map((src, i) => `<img src="${esc(src)}" alt="${esc(p.title)} - foto ${i + 1}" loading="lazy">`).join("")
-    : `<div class="slide-placeholder">[ Foto del projecte ]</div>`;
+    ? images.map((src, i) => `<div class="slide"><img src="${esc(src)}" alt="${esc(p.title)} - foto ${i + 1}" loading="lazy"></div>`).join("")
+    : `<div class="slide slide-placeholder">[ Foto del projecte ]</div>`;
   const controls = multi
     ? `<button class="pc-btn pc-prev" type="button" aria-label="Foto anterior">‹</button>
        <button class="pc-btn pc-next" type="button" aria-label="Foto següent">›</button>
