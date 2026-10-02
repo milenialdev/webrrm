@@ -8,6 +8,14 @@ backend:
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
+media_processing:
+  enabled: true
+  format:
+    enabled: true
+    default: webp
+  quality: 80
+  width: 1600
+
 collections:
   - name: "site"
     label: "Textos generals"
@@ -159,4 +167,10 @@ collections:
                 name: "tags"
                 widget: "list"
                 default: []
-              - { label: "Foto", name: "image", widget: "image", required: false }
+              - label: "Fotos (màxim 5)"
+                name: "images"
+                widget: "list"
+                max: 5
+                required: false
+                hint: "Puja fins a 5 fotos del projecte. Es redimensionen i es comprimeixen soles en pujar-les. La primera és la que es veu a la targeta."
+                field: { label: "Foto", name: "image", widget: "image" }

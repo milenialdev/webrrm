@@ -1,14 +1,4 @@
-async function loadJSON(path) {
-  const res = await fetch(path, { cache: "no-store" });
-  if (!res.ok) throw new Error(`No s'ha pogut carregar ${path}`);
-  return res.json();
-}
-
-function el(html) {
-  const t = document.createElement("template");
-  t.innerHTML = html.trim();
-  return t.content.firstElementChild;
-}
+import { loadJSON, el, withSlugs, projectCard, setupMobileNav } from "./projects-shared.js";
 
 const SVG_ATTRS = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
 const ICONS = {
@@ -114,21 +104,10 @@ function renderProjects(data) {
 
   const grid = document.getElementById("projects-grid");
   grid.innerHTML = "";
-  const latest = [...data.items]
+  const latest = withSlugs(data.items)
     .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))
     .slice(0, 3);
-  latest.forEach(p => {
-    grid.appendChild(el(`
-      <article class="project-card">
-        <div class="project-img" style="${p.image ? `background-image:url(${p.image})` : ""}">${p.image ? "" : "[ Foto del projecte ]"}</div>
-        <div class="project-body">
-          <div class="project-category">${p.category}</div>
-          <h3>${p.title}</h3>
-          <div class="project-location">${p.location}</div>
-        </div>
-      </article>
-    `));
-  });
+  latest.forEach(p => grid.appendChild(projectCard(p)));
 }
 
 function renderProcess(site) {
@@ -302,17 +281,6 @@ function setupForm() {
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
     }
-  });
-}
-
-function setupMobileNav() {
-  const toggle = document.querySelector(".nav-toggle");
-  const header = document.querySelector(".site-header");
-  toggle.addEventListener("click", () => {
-    header.classList.toggle("nav-open");
-  });
-  header.querySelectorAll(".nav-links a").forEach(a => {
-    a.addEventListener("click", () => header.classList.remove("nav-open"));
   });
 }
 
