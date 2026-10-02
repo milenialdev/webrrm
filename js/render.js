@@ -1,4 +1,4 @@
-import { loadJSON, el, withSlugs, projectCard, setupMobileNav } from "./projects-shared.js";
+import { loadJSON, el, withSlugs, projectCard, setupMobileNav, prefersReducedMotion } from "./projects-shared.js";
 import { iconSvg } from "./icons.js";
 
 function renderHero(site) {
@@ -52,8 +52,9 @@ function renderServices(data) {
 
   const prevBtn = document.querySelector(".carousel-prev");
   const nextBtn = document.querySelector(".carousel-next");
-  prevBtn.addEventListener("click", () => track.scrollBy({ left: -300, behavior: "smooth" }));
-  nextBtn.addEventListener("click", () => track.scrollBy({ left: 300, behavior: "smooth" }));
+  const behavior = () => (prefersReducedMotion() ? "auto" : "smooth");
+  prevBtn.addEventListener("click", () => track.scrollBy({ left: -300, behavior: behavior() }));
+  nextBtn.addEventListener("click", () => track.scrollBy({ left: 300, behavior: behavior() }));
 }
 
 function renderAbout(site) {
@@ -153,9 +154,11 @@ function renderFooter(site) {
 function setFieldError(input, errorEl, message) {
   if (message) {
     input.classList.add("invalid");
+    input.setAttribute("aria-invalid", "true");
     errorEl.textContent = message;
   } else {
     input.classList.remove("invalid");
+    input.removeAttribute("aria-invalid");
     errorEl.textContent = "";
   }
   return !message;
@@ -234,6 +237,7 @@ function setupForm() {
     if (!validName || !validEmail || !validPhone || !validMessage) {
       status.textContent = "Revisa els camps marcats abans d'enviar.";
       status.classList.add("error");
+      form.querySelector('[aria-invalid="true"]')?.focus();
       return;
     }
 

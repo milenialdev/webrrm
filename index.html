@@ -11,11 +11,12 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<a class="skip-link" href="#contingut">Salta al contingut</a>
 
 <header class="site-header">
   <div class="container">
     <a href="#inici" class="logo"><img src="assets/logo-horizontal.svg" alt="Rehabilitacions Ruíz Marín" width="138" height="46"></a>
-    <nav class="nav-links">
+    <nav class="nav-links" id="site-nav">
       <a href="#inici">Inici</a>
       <a href="#serveis">Serveis</a>
       <a href="#projectes">Projectes</a>
@@ -25,11 +26,11 @@
     <div class="nav-cta">
       <a href="#contacte" class="btn btn-primary">Demana pressupost</a>
     </div>
-    <button class="nav-toggle" aria-label="Menú">☰</button>
+    <button class="nav-toggle" aria-label="Menú" aria-controls="site-nav" aria-expanded="false">☰</button>
   </div>
 </header>
 
-<main>
+<main id="contingut" tabindex="-1">
 
   <!-- HERO -->
   <section class="hero" id="inici">
@@ -114,22 +115,22 @@
         <form id="contact-form">
           <input type="hidden" name="access_key" value="609eb965-7489-457e-9d6c-44eeb781dd1e">
           <input type="hidden" name="subject" value="Nou missatge des de la web — Rehabilitacions Ruíz Marín">
-          <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+          <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-row">
             <div class="form-field">
               <label for="name">Nom i cognoms</label>
-              <input type="text" id="name" name="name" required>
+              <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-error">
               <span class="field-error" id="name-error"></span>
             </div>
             <div class="form-field">
               <label for="phone">Telèfon</label>
-              <input type="tel" id="phone" name="phone" inputmode="numeric">
+              <input type="tel" id="phone" name="phone" inputmode="numeric" autocomplete="tel" aria-describedby="phone-error">
               <span class="field-error" id="phone-error"></span>
             </div>
           </div>
           <div class="form-field" style="margin-bottom:16px;">
             <label for="email">Correu electrònic</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required autocomplete="email" aria-describedby="email-error">
             <span class="field-error" id="email-error"></span>
           </div>
           <div class="form-field" style="margin-bottom:16px;">
@@ -138,7 +139,7 @@
           </div>
           <div class="form-field">
             <label for="message">Missatge</label>
-            <textarea id="message" name="message" required></textarea>
+            <textarea id="message" name="message" required aria-describedby="message-error"></textarea>
             <span class="field-error" id="message-error"></span>
           </div>
           <div class="form-footer">

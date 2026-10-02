@@ -33,6 +33,8 @@ export function withSlugs(items) {
   });
 }
 
+export const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export function setupCarousel(root, onChange) {
   const track = root.querySelector(".carousel-slides");
   const count = track.children.length;
@@ -40,7 +42,7 @@ export function setupCarousel(root, onChange) {
   const current = () => Math.round(track.scrollLeft / track.clientWidth) || 0;
   const go = i => {
     const wraps = i < 0 || i >= count;
-    track.scrollTo({ left: ((i + count) % count) * track.clientWidth, behavior: wraps ? "instant" : "smooth" });
+    track.scrollTo({ left: ((i + count) % count) * track.clientWidth, behavior: wraps || prefersReducedMotion() ? "instant" : "smooth" });
   };
 
   root.querySelector(".pc-prev")?.addEventListener("click", () => go(current() - 1));
@@ -110,9 +112,17 @@ export function projectCard(p) {
 export function setupMobileNav() {
   const toggle = document.querySelector(".nav-toggle");
   const header = document.querySelector(".site-header");
-  toggle.addEventListener("click", () => header.classList.toggle("nav-open"));
-  header.querySelectorAll(".nav-links a").forEach(a => {
-    a.addEventListener("click", () => header.classList.remove("nav-open"));
+  const setOpen = open => {
+    header.classList.toggle("nav-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+  };
+  toggle.addEventListener("click", () => setOpen(!header.classList.contains("nav-open")));
+  header.querySelectorAll(".nav-links a").forEach(a => a.addEventListener("click", () => setOpen(false)));
+  header.addEventListener("keydown", e => {
+    if (e.key === "Escape" && header.classList.contains("nav-open")) {
+      setOpen(false);
+      toggle.focus();
+    }
   });
 }
 

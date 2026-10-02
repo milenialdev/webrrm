@@ -37,12 +37,12 @@ collections:
             hint: "El títol es forma amb 5 peces seguides: «Tens un [projecte] en ment? Nosaltres / tenim la [solució].» Les paraules destacades surten en cursiva de color."
             fields:
               - { label: "Títol: començament", name: "title_line1", widget: "string" }
-              - { label: "Títol: paraula destacada en verd", name: "title_highlight1", widget: "string" }
+              - { label: "Títol: paraula destacada en blau", name: "title_highlight1", widget: "string" }
               - { label: "Títol: continuació", name: "title_line2", widget: "string" }
               - { label: "Títol: segona línia", name: "title_line3", widget: "string" }
               - { label: "Títol: paraula destacada en terracota", name: "title_highlight2", widget: "string" }
               - { label: "Text sota el títol", name: "subtitle", widget: "text" }
-              - { label: "Botó principal (verd)", name: "cta_primary", widget: "string" }
+              - { label: "Botó principal (blau)", name: "cta_primary", widget: "string" }
               - { label: "Botó secundari (blanc)", name: "cta_secondary", widget: "string" }
               - { label: "Foto de portada", name: "image", widget: "image", required: false, hint: "Millor una foto horitzontal. Es fa més petita i lleugera automàticament en pujar-la." }
           - label: "Qui som"
@@ -100,7 +100,7 @@ collections:
         fields:
           - { label: "Text petit sobre el títol", name: "tag", widget: "string" }
           - { label: "Títol", name: "title", widget: "string" }
-          - { label: "Part destacada del títol (cursiva verda)", name: "title_highlight", widget: "string" }
+          - { label: "Part destacada del títol (cursiva blava)", name: "title_highlight", widget: "string" }
           - { label: "Text sota el títol", name: "subtitle", widget: "text" }
           - label: "Servei destacat (targeta gran)"
             name: "featured"
@@ -147,7 +147,7 @@ collections:
                 default: "light"
                 options:
                   - { label: "Blanca", value: "light" }
-                  - { label: "Verd blau", value: "dark-teal" }
+                  - { label: "Blau", value: "dark-teal" }
                   - { label: "Terracota", value: "terracotta" }
 
   - name: "projects"
@@ -160,7 +160,7 @@ collections:
         fields:
           - { label: "Text petit sobre el títol", name: "tag", widget: "string" }
           - { label: "Títol", name: "title", widget: "string" }
-          - { label: "Part destacada del títol (cursiva verda)", name: "title_highlight", widget: "string" }
+          - { label: "Part destacada del títol (cursiva blava)", name: "title_highlight", widget: "string" }
           - { label: "Text sota el títol", name: "subtitle", widget: "text" }
           - label: "Projectes"
             name: "items"

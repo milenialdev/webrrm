@@ -11,11 +11,12 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<a class="skip-link" href="#contingut">Salta al contingut</a>
 
 <header class="site-header">
   <div class="container">
     <a href="index.html#inici" class="logo"><img src="assets/logo-horizontal.svg" alt="Rehabilitacions Ruíz Marín" width="138" height="46"></a>
-    <nav class="nav-links">
+    <nav class="nav-links" id="site-nav">
       <a href="index.html#inici">Inici</a>
       <a href="index.html#serveis">Serveis</a>
       <a href="projectes.html">Projectes</a>
@@ -25,11 +26,11 @@
     <div class="nav-cta">
       <a href="index.html#contacte" class="btn btn-primary">Demana pressupost</a>
     </div>
-    <button class="nav-toggle" aria-label="Menú">☰</button>
+    <button class="nav-toggle" aria-label="Menú" aria-controls="site-nav" aria-expanded="false">☰</button>
   </div>
 </header>
 
-<main>
+<main id="contingut" tabindex="-1">
   <section class="section project-detail">
     <div class="container">
       <a href="projectes.html" class="back-link">← Tots els projectes</a>

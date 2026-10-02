@@ -40,7 +40,7 @@ Secciones, en este orden, replicando la imagen de referencia:
 6. Contacto: datos de la empresa (dirección, teléfono, email, horario) + formulario (Web3Forms).
 7. Footer: enlaces, datos legales.
 
-Paleta: crema `#F1EAE3`, teal `#1B6B75`/`#0F4C56`, terracota `#B5623A`, negro-verdoso oscuro `#12211E` para secciones oscuras. Tipografía serif itálica para acentos ("solució", "la teva llar"), sans-serif para el resto.
+Paleta: crema `#F1EAE3`, azul del logo `#0094B2` (variante oscura `#006B80`), terracota `#B5623A`, negro-verdoso oscuro `#12211E` para secciones oscuras. Tipografía serif itálica para acentos ("solució", "la teva llar"), sans-serif para el resto.
 
 Todo el texto e imágenes de esta maquetación deben salir de los archivos en `/content/`, no estar hardcodeados en el HTML — así Decap CMS puede editarlos.
 
