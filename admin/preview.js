@@ -79,7 +79,7 @@ function footerHtml(d) {
   return `
     <footer class="site-footer" style="padding:32px 0 16px">
       <div class="container">
-        <div class="footer-brand"><h3>${esc(f.company)}</h3><p>${esc(f.description)}</p></div>
+        <div class="footer-brand"><span class="footer-logo"><img src="/assets/logo-horizontal.svg" alt="Rehabilitacions Ruíz Marín"></span><p>${esc(f.description)}</p></div>
         <div class="footer-bottom" style="margin-top:24px">${esc(f.legal)}</div>
       </div>
     </footer>`;

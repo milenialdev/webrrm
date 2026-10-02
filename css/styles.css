@@ -109,36 +109,8 @@ a { color: inherit; text-decoration: none; }
   justify-content: space-between;
   height: 76px;
 }
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: "Georgia", serif;
-}
-.logo-mark {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: var(--teal);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
-}
-.logo-text-sub {
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  font-family: "Inter", sans-serif;
-}
-.logo-text-main {
-  font-size: 18px;
-  color: var(--teal-dark);
-  line-height: 1.1;
-}
+.logo { display: flex; align-items: center; }
+.logo img { height: 46px; width: auto; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -658,7 +630,8 @@ section[id], #contact-form { scroll-margin-top: 92px; }
   gap: 32px;
   padding-bottom: 40px;
 }
-.footer-brand h3 { color: var(--teal); font-size: 20px; margin-bottom: 10px; }
+.footer-logo { display: inline-block; margin-bottom: 14px; }
+.footer-logo img { height: 50px; width: auto; }
 .footer-brand p { font-size: 13.5px; max-width: 260px; }
 .footer-col h4 { color: #fff; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 16px; font-family: "Inter", sans-serif; font-weight: 600; }
 .footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; }
@@ -708,6 +681,7 @@ section[id], #contact-form { scroll-margin-top: 92px; }
   .footer-grid { grid-template-columns: 1fr; }
   .section { padding: 64px 0; }
   .carousel-track .card { min-width: 230px; max-width: 230px; }
+  .logo img { height: 38px; }
   .project-detail { padding-top: 32px; }
   .project-detail h1 { font-size: 30px; }
   .gallery .carousel-slides { height: 67.5vw; }

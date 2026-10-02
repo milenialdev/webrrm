@@ -97,7 +97,6 @@ export function setupMobileNav() {
 }
 
 export function fillFooter(site) {
-  document.getElementById("footer-company").textContent = site.footer.company;
   document.getElementById("footer-description").textContent = site.footer.description;
   document.getElementById("footer-legal").textContent = site.footer.legal;
   document.getElementById("footer-contact").innerHTML = `
