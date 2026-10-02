@@ -5,6 +5,12 @@ backend:
   base_url: https://webrrm.carlosbenitoandev.workers.dev
   auth_endpoint: api/auth
 
+locale: "ca"
+site_url: https://webrrm.carlosbenitoandev.workers.dev
+logo:
+  src: /assets/logo.svg
+  show_in_header: true
+
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
@@ -18,94 +24,89 @@ media_processing:
 
 collections:
   - name: "site"
-    label: "Textos generals"
+    label: "Pàgina d'inici"
+    description: "Textos i fotos de la portada, «Qui som» i el contacte."
     files:
       - name: "general"
-        label: "Inici, Nosaltres, Procés i Contacte"
+        label: "Textos de la pàgina d'inici"
         file: "content/site.json"
         fields:
-          - label: "Portada (Hero)"
+          - label: "Portada"
             name: "hero"
             widget: "object"
+            hint: "El títol es forma amb 5 peces seguides: «Tens un [projecte] en ment? Nosaltres / tenim la [solució].» Les paraules destacades surten en cursiva de color."
             fields:
-              - { label: "Text 1 (abans de 'projecte')", name: "title_line1", widget: "string" }
-              - { label: "Paraula destacada 1", name: "title_highlight1", widget: "string" }
-              - { label: "Text 2 (després de 'projecte')", name: "title_line2", widget: "string" }
-              - { label: "Text 3 (abans de 'solució')", name: "title_line3", widget: "string" }
-              - { label: "Paraula destacada 2", name: "title_highlight2", widget: "string" }
-              - { label: "Subtítol", name: "subtitle", widget: "text" }
-              - { label: "Text botó principal", name: "cta_primary", widget: "string" }
-              - { label: "Text botó secundari", name: "cta_secondary", widget: "string" }
-              - { label: "Imatge de portada", name: "image", widget: "image", required: false }
-          - label: "Secció Nosaltres"
+              - { label: "Títol: començament", name: "title_line1", widget: "string" }
+              - { label: "Títol: paraula destacada en verd", name: "title_highlight1", widget: "string" }
+              - { label: "Títol: continuació", name: "title_line2", widget: "string" }
+              - { label: "Títol: segona línia", name: "title_line3", widget: "string" }
+              - { label: "Títol: paraula destacada en terracota", name: "title_highlight2", widget: "string" }
+              - { label: "Text sota el títol", name: "subtitle", widget: "text" }
+              - { label: "Botó principal (verd)", name: "cta_primary", widget: "string" }
+              - { label: "Botó secundari (blanc)", name: "cta_secondary", widget: "string" }
+              - { label: "Foto de portada", name: "image", widget: "image", required: false, hint: "Millor una foto horitzontal. Es fa més petita i lleugera automàticament en pujar-la." }
+          - label: "Qui som"
             name: "about"
             widget: "object"
+            collapsed: true
             fields:
-              - { label: "Etiqueta petita", name: "tag", widget: "string" }
+              - { label: "Text petit sobre el títol", name: "tag", widget: "string" }
               - { label: "Títol", name: "title", widget: "string" }
-              - { label: "Títol destacat", name: "title_highlight", widget: "string" }
+              - { label: "Part destacada del títol (cursiva)", name: "title_highlight", widget: "string" }
               - { label: "Text", name: "text", widget: "text" }
               - { label: "Frase destacada", name: "quote", widget: "string" }
               - label: "Foto (treballadors a l'obra)"
                 name: "photo"
                 widget: "object"
                 fields:
-                  - { label: "Etiqueta (text mentre no hi ha foto)", name: "label", widget: "string" }
+                  - { label: "Text mentre no hi ha foto", name: "label", widget: "string" }
                   - { label: "Foto", name: "image", widget: "image", required: false }
               - label: "Xifres"
                 name: "stats"
                 widget: "list"
+                label_singular: "xifra"
+                summary: "{{fields.value}} · {{fields.label}}"
                 fields:
-                  - { label: "Valor", name: "value", widget: "string" }
-                  - { label: "Etiqueta", name: "label", widget: "string" }
-          - label: "Secció Procés"
-            name: "process"
-            widget: "object"
-            fields:
-              - { label: "Etiqueta petita", name: "tag", widget: "string" }
-              - { label: "Títol", name: "title", widget: "string" }
-              - { label: "Títol destacat", name: "title_highlight", widget: "string" }
-              - label: "Passos"
-                name: "steps"
-                widget: "list"
-                fields:
-                  - { label: "Número", name: "number", widget: "string" }
-                  - { label: "Títol", name: "title", widget: "string" }
-                  - { label: "Text", name: "text", widget: "string" }
-          - label: "Secció Contacte"
+                  - { label: "Número", name: "value", widget: "string", hint: "Per exemple: +500, 98% o 20" }
+                  - { label: "Descripció", name: "label", widget: "string" }
+          - label: "Contacte"
             name: "contact"
             widget: "object"
+            collapsed: true
             fields:
               - { label: "Títol", name: "title", widget: "string" }
-              - { label: "Títol destacat", name: "title_highlight", widget: "string" }
+              - { label: "Part destacada del títol (cursiva)", name: "title_highlight", widget: "string" }
               - { label: "Text", name: "text", widget: "text" }
               - { label: "Adreça", name: "address", widget: "string" }
               - { label: "Telèfon", name: "phone", widget: "string" }
-              - { label: "Correu", name: "email", widget: "string" }
+              - { label: "Correu electrònic", name: "email", widget: "string" }
               - { label: "Horari", name: "hours", widget: "string" }
               - { label: "Nota sota el formulari", name: "form_note", widget: "string" }
           - label: "Peu de pàgina"
             name: "footer"
             widget: "object"
+            collapsed: true
             fields:
-              - { label: "Nom empresa", name: "company", widget: "string" }
+              - { label: "Nom de l'empresa", name: "company", widget: "string" }
               - { label: "Descripció", name: "description", widget: "text" }
               - { label: "Text legal", name: "legal", widget: "string" }
 
   - name: "services"
     label: "Serveis"
+    description: "Els serveis que es mostren a la web."
     files:
       - name: "services"
-        label: "Llista de serveis"
+        label: "Serveis"
         file: "content/services.json"
         fields:
-          - { label: "Etiqueta petita", name: "tag", widget: "string" }
+          - { label: "Text petit sobre el títol", name: "tag", widget: "string" }
           - { label: "Títol", name: "title", widget: "string" }
-          - { label: "Títol destacat", name: "title_highlight", widget: "string" }
-          - { label: "Subtítol", name: "subtitle", widget: "text" }
+          - { label: "Part destacada del títol (cursiva verda)", name: "title_highlight", widget: "string" }
+          - { label: "Text sota el títol", name: "subtitle", widget: "text" }
           - label: "Servei destacat (targeta gran)"
             name: "featured"
             widget: "object"
+            collapsed: true
             fields:
               - { label: "Títol", name: "title", widget: "string" }
               - label: "Icona"
@@ -118,13 +119,15 @@ collections:
                   - { label: "Persones (comunitats)", value: "people" }
                   - { label: "Document (permisos)", value: "document" }
                   - { label: "Pot de pintura", value: "brush" }
-                  - { label: "Biga (estructures)", value: "beam" }
-              - { label: "Punts (llista curta)", name: "items", widget: "list" }
-              - { label: "Text enllaç", name: "link", widget: "string" }
-              - { label: "Imatge", name: "image", widget: "image", required: false }
-          - label: "Altres serveis"
+                  - { label: "Columnes (estructures)", value: "beam" }
+              - { label: "Punts de la llista", name: "items", widget: "list", label_singular: "punt" }
+              - { label: "Text de l'enllaç", name: "link", widget: "string" }
+              - { label: "Foto", name: "image", widget: "image", required: false }
+          - label: "Targetes de serveis"
             name: "items"
             widget: "list"
+            label_singular: "servei"
+            summary: "{{fields.title}}"
             fields:
               - { label: "Títol", name: "title", widget: "string" }
               - label: "Icona"
@@ -137,40 +140,73 @@ collections:
                   - { label: "Persones (comunitats)", value: "people" }
                   - { label: "Document (permisos)", value: "document" }
                   - { label: "Pot de pintura", value: "brush" }
-                  - { label: "Biga (estructures)", value: "beam" }
+                  - { label: "Columnes (estructures)", value: "beam" }
               - { label: "Text", name: "text", widget: "text" }
-              - label: "Estil de la targeta"
+              - label: "Color de la targeta"
                 name: "style"
                 widget: "select"
-                options: ["light", "dark-teal", "terracotta"]
+                default: "light"
+                options:
+                  - { label: "Blanca", value: "light" }
+                  - { label: "Verd blau", value: "dark-teal" }
+                  - { label: "Terracota", value: "terracotta" }
 
   - name: "projects"
     label: "Projectes"
+    description: "Els treballs que es mostren a la web. Els 3 més recents surten a l'inici."
     files:
       - name: "projects"
-        label: "Galeria de projectes"
+        label: "Projectes"
         file: "content/projects.json"
         fields:
-          - { label: "Etiqueta petita", name: "tag", widget: "string" }
+          - { label: "Text petit sobre el títol", name: "tag", widget: "string" }
           - { label: "Títol", name: "title", widget: "string" }
-          - { label: "Títol destacat", name: "title_highlight", widget: "string" }
-          - { label: "Subtítol", name: "subtitle", widget: "text" }
+          - { label: "Part destacada del títol (cursiva verda)", name: "title_highlight", widget: "string" }
+          - { label: "Text sota el títol", name: "subtitle", widget: "text" }
           - label: "Projectes"
             name: "items"
             widget: "list"
+            label_singular: "projecte"
+            summary: "{{fields.title}} · {{fields.location}}"
+            add_to_top: true
             fields:
               - { label: "Títol", name: "title", widget: "string" }
               - { label: "Població", name: "location", widget: "string" }
-              - { label: "Categoria", name: "category", widget: "string" }
-              - { label: "Data", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true }
-              - label: "Etiquetes (per filtrar a 'Tots els projectes')"
+              - { label: "Categoria", name: "category", widget: "string", hint: "El text petit en majúscules que surt sobre el títol de la targeta." }
+              - { label: "Data", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true, hint: "Serveix per ordenar: els més recents surten primer." }
+              - label: "Etiquetes (per filtrar a «Tots els projectes»)"
                 name: "tags"
-                widget: "list"
-                default: []
+                widget: "relation"
+                collection: "tags"
+                file: "tags"
+                search_fields: ["tags.*.name"]
+                display_fields: ["tags.*.name"]
+                value_field: "tags.*.name"
+                multiple: true
+                required: false
+                hint: "Tria una o més. Si no surt la que busques, afegeix-la abans a «Etiquetes dels projectes»."
               - label: "Fotos (màxim 5)"
                 name: "images"
                 widget: "list"
                 max: 5
                 required: false
-                hint: "Puja fins a 5 fotos del projecte. Es redimensionen i es comprimeixen soles en pujar-les. La primera és la que es veu a la targeta."
+                label_singular: "foto"
+                hint: "Puja fins a 5 fotos. Es fan més petites i lleugeres soles en pujar-les. La primera és la que es veu a la targeta."
                 field: { label: "Foto", name: "image", widget: "image" }
+
+  - name: "tags"
+    label: "Etiquetes dels projectes"
+    description: "Les etiquetes que es poden triar als projectes. Surten com a filtres a «Tots els projectes»."
+    files:
+      - name: "tags"
+        label: "Etiquetes"
+        file: "content/tags.json"
+        fields:
+          - label: "Etiquetes"
+            name: "tags"
+            widget: "list"
+            label_singular: "etiqueta"
+            summary: "{{fields.name}}"
+            hint: "Si canvies el nom d'una etiqueta, torna a triar-la als projectes que la fan servir."
+            fields:
+              - { label: "Nom", name: "name", widget: "string" }
