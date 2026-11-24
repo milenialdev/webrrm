@@ -45,26 +45,37 @@
       ]
     },
     {
-      "title": "Impermeabilització de terrat",
-      "location": "Sant Adrià de Besòs",
+      "title": "Impermeabilització de terrat - Major de Sarrià",
+      "location": "Barcelona",
       "category": "Impermeabilització",
       "tags": [
-        "Impermeabilització"
+        "Impermeabilització",
+        "Aïllament",
+        "Paviments"
       ],
       "date": "2025-09-05",
-      "images": []
+      "images": [
+        "/assets/uploads/aïllament-ms-2.webp",
+        "/assets/uploads/aïllament-ms-1.webp",
+        "/assets/uploads/aïllament-ms-3.webp"
+      ]
     },
     {
-      "title": "Saragossa",
+      "title": "Impermeabilització de terrat - Sant Joaquim",
       "location": "Badalona",
-      "category": "Rehabilitació",
+      "category": "Impermeanbilització",
       "tags": [
-        "Façanes",
-        "Rehabilitació"
+        "Impermeabilització",
+        "Paviments",
+        "Aïllament",
+        "Treballs en alçada"
       ],
       "date": "2026-02-01",
       "images": [
-        "https://d129a85b0t6mus.cloudfront.net/public/DigitalAsset/38449c7d-efd3-4978-96b0-110f4340d3df/3c8b4c1923dee7036ad7bee7430ad7c2/full/large/0/default.jpg"
+        "/assets/uploads/aillament-sj-3.webp",
+        "/assets/uploads/aillament-sj-2.webp",
+        "/assets/uploads/aillament-sj-4.webp",
+        "/assets/uploads/aillament-sj-1.webp"
       ]
     }
   ]
