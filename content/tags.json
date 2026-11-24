@@ -1,8 +1,46 @@
 {
   "tags": [
-    { "name": "Façanes" },
-    { "name": "Rehabilitació" },
-    { "name": "Reformes" },
-    { "name": "Impermeabilització" }
+    {
+      "name": "Façanes"
+    },
+    {
+      "name": "Interiors"
+    },
+    {
+      "name": "Impermeabilització"
+    },
+    {
+      "name": "Baranes"
+    },
+    {
+      "name": "Revestiments"
+    },
+    {
+      "name": "Paviments"
+    },
+    {
+      "name": "Envà pluvial"
+    },
+    {
+      "name": "Aïllament"
+    },
+    {
+      "name": "Terrasses"
+    },
+    {
+      "name": "Balcons"
+    },
+    {
+      "name": "Treballs en alçada"
+    },
+    {
+      "name": "Bastides"
+    },
+    {
+      "name": "Pintura"
+    },
+    {
+      "name": "Patis de llum"
+    }
   ]
 }
