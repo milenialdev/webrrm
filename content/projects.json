@@ -5,11 +5,14 @@
   "subtitle": "Alguns dels nostres treballs més recents a Badalona i rodalies.",
   "items": [
     {
-      "title": "Rehabilitació de façana",
+      "title": "Rehabilitació de façana - Jocs Florals",
       "location": "Badalona",
-      "category": "Façanes",
+      "category": "Façana",
       "tags": [
-        "Façanes"
+        "Façanes",
+        "Revestiments",
+        "Baranes",
+        "Pintura"
       ],
       "date": "2026-01-15",
       "images": [
@@ -20,14 +23,25 @@
       ]
     },
     {
-      "title": "Reforma integral d'habitatge",
+      "title": "Rehabilitació de façana i envà pluvial - Josep Vicenç Foix",
       "location": "Badalona",
-      "category": "Reformes",
+      "category": "Façana i aïllament",
       "tags": [
-        "Reformes"
+        "Aïllament",
+        "Envà pluvial",
+        "Revestiments",
+        "Façanes",
+        "Baranes",
+        "Balcons"
       ],
       "date": "2025-11-20",
-      "images": []
+      "images": [
+        "/assets/uploads/envà-i-façana.webp",
+        "/assets/uploads/abans.webp",
+        "/assets/uploads/façana.webp",
+        "/assets/uploads/img-20251124-wa0010.webp",
+        "/assets/uploads/img-20251124-wa0013.webp"
+      ]
     },
     {
       "title": "Impermeabilització de terrat",
