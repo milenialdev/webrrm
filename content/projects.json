@@ -5,6 +5,24 @@
   "subtitle": "Alguns dels nostres treballs més recents a Badalona i rodalies.",
   "items": [
     {
+      "title": "Rehabilitació de façana - Jocs Florals",
+      "location": "Badalona",
+      "description": "Rehabilitació integral de façana: treballs de pintura, sanejat de baranes i substitució de trencaigües.",
+      "tags": [
+        "Façanes",
+        "Revestiments",
+        "Baranes",
+        "Pintura"
+      ],
+      "date": "2026-11-24",
+      "images": [
+        "/assets/uploads/a2.webp",
+        "/assets/uploads/a1.webp",
+        "/assets/uploads/c2.webp",
+        "/assets/uploads/c1.webp"
+      ]
+    },
+    {
       "title": "Rehabilitació de façana i envà pluvial - Josep Vicenç Foix",
       "location": "Badalona",
       "description": "Façana i aïllament",
@@ -43,24 +61,6 @@
         "/assets/uploads/aillament-sj-2.webp",
         "/assets/uploads/aillament-sj-4.webp",
         "/assets/uploads/aillament-sj-1.webp"
-      ]
-    },
-    {
-      "title": "Rehabilitació de façana - Jocs Florals",
-      "location": "Badalona",
-      "description": "Rehabilitació integral de façana: treballs de pintura, sanejat de baranes i substitució de trencaigües.",
-      "tags": [
-        "Façanes",
-        "Revestiments",
-        "Baranes",
-        "Pintura"
-      ],
-      "date": "2026-11-24",
-      "images": [
-        "/assets/uploads/a2.webp",
-        "/assets/uploads/a1.webp",
-        "/assets/uploads/c2.webp",
-        "/assets/uploads/c1.webp"
       ]
     },
     {
