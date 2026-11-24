@@ -6,9 +6,12 @@
   "featured": {
     "title": "Rehabilitació de Façanes",
     "icon": "building",
-    "items": ["Rehabilitació i restauració.", "Rehabilitació energètica i aïllament tèrmic."],
+    "items": [
+      "Rehabilitació i restauració.",
+      "Rehabilitació energètica i aïllament tèrmic."
+    ],
     "link": "Saber-ne més",
-    "image": ""
+    "image": "/assets/uploads/c2.webp"
   },
   "items": [
     {
