@@ -428,14 +428,6 @@ section[id], #contact-form { scroll-margin-top: 92px; }
 .pc-dot.active { background: #fff; }
 
 .project-card .project-body { padding: 20px 22px; }
-.project-card .project-category {
-  font-size: 12px;
-  color: var(--terracotta);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 6px;
-}
 .project-card h3 { font-size: 18px; margin-bottom: 4px; }
 .project-card .project-location { color: var(--text-muted); font-size: 13.5px; }
 
@@ -478,8 +470,19 @@ section[id], #contact-form { scroll-margin-top: 92px; }
   font-size: 14.5px;
   margin-bottom: 14px;
 }
+.project-description {
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 70ch;
+  margin: 0 0 18px;
+  white-space: pre-line;
+}
 .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
 .project-tags .tag-pill { margin-bottom: 0; }
+.tag-link { transition: background 0.15s ease, color 0.15s ease; }
+.tag-link:hover { background: var(--teal); color: var(--on-blue); }
+.tag-link:focus-visible { outline: 2px solid var(--teal-dark); outline-offset: 2px; }
 .gallery {
   position: relative;
   background: var(--near-black);

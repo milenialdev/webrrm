@@ -11,8 +11,10 @@ async function init() {
   document.getElementById("projects-subtitle").textContent = projects.subtitle;
   fillFooter(site);
 
-  const items = withSlugs(projects.items).sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+  const items = withSlugs(projects.items);
   const allTags = [...new Set(items.flatMap(p => p.tags || []))];
+  const requested = new URLSearchParams(location.search).get("tag");
+  const initial = allTags.includes(requested) ? requested : "all";
 
   const grid = document.getElementById("projects-grid-all");
   const empty = document.getElementById("projects-empty");
@@ -29,19 +31,26 @@ async function init() {
     filtersWrap.innerHTML = "";
     const makeBtn = (label, value, active) => {
       const btn = el(`<button class="tag-filter-btn${active ? " active" : ""}" type="button">${esc(label)}</button>`);
+      btn.setAttribute("aria-pressed", String(active));
       btn.addEventListener("click", () => {
-        filtersWrap.querySelectorAll(".tag-filter-btn").forEach(b => b.classList.remove("active"));
+        filtersWrap.querySelectorAll(".tag-filter-btn").forEach(b => {
+          b.classList.remove("active");
+          b.setAttribute("aria-pressed", "false");
+        });
         btn.classList.add("active");
+        btn.setAttribute("aria-pressed", "true");
+        const url = value === "all" ? location.pathname : `${location.pathname}?tag=${encodeURIComponent(value)}`;
+        history.replaceState(null, "", url);
         renderGrid(value);
       });
       return btn;
     };
-    filtersWrap.appendChild(makeBtn("Tots", "all", true));
-    allTags.forEach(tag => filtersWrap.appendChild(makeBtn(tag, tag, false)));
+    filtersWrap.appendChild(makeBtn("Tots", "all", initial === "all"));
+    allTags.forEach(tag => filtersWrap.appendChild(makeBtn(tag, tag, tag === initial)));
   }
 
   renderFilters();
-  renderGrid("all");
+  renderGrid(initial);
   setupMobileNav();
 }
 

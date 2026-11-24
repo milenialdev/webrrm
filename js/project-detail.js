@@ -77,12 +77,16 @@ async function init() {
   }
 
   document.title = `${p.title} — Rehabilitacions Ruíz Marín`;
-  const meta = [p.category, p.location, formatDate(p.date)].filter(Boolean).map(esc).join("<span class=\"meta-dot\">·</span>");
-  const tags = (p.tags || []).map(t => `<span class="tag-pill">${esc(t)}</span>`).join("");
+  const meta = [p.location, formatDate(p.date)].filter(Boolean).map(esc).join("<span class=\"meta-dot\">·</span>");
+  const description = (p.description || "").trim();
+  const tags = (p.tags || [])
+    .map(t => `<a class="tag-pill tag-link" href="projectes.html?tag=${encodeURIComponent(t)}" title="Veure tots els projectes amb l'etiqueta ${esc(t)}">${esc(t)}</a>`)
+    .join("");
 
   root.innerHTML = `
     <h1>${esc(p.title)}</h1>
-    <div class="project-meta">${meta}</div>
+    ${meta ? `<div class="project-meta">${meta}</div>` : ""}
+    ${description ? `<p class="project-description">${esc(description)}</p>` : ""}
     ${tags ? `<div class="project-tags">${tags}</div>` : ""}
   `;
   root.appendChild(renderGallery(p));

@@ -88,10 +88,7 @@ function renderProjects(data) {
 
   const grid = document.getElementById("projects-grid");
   grid.innerHTML = "";
-  const latest = withSlugs(data.items)
-    .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))
-    .slice(0, 3);
-  latest.forEach(p => grid.appendChild(projectCard(p)));
+  withSlugs(data.items).slice(0, 3).forEach(p => grid.appendChild(projectCard(p)));
 }
 
 function renderProcess(site) {

@@ -152,7 +152,7 @@ collections:
 
   - name: "projects"
     label: "Projectes"
-    description: "Els treballs que es mostren a la web. Els 3 més recents surten a l'inici."
+    description: "Els treballs que es mostren a la web. Els 3 primers de la llista surten a l'inici."
     files:
       - name: "projects"
         label: "Projectes"
@@ -168,11 +168,12 @@ collections:
             label_singular: "projecte"
             summary: "{{fields.title}} · {{fields.location}}"
             add_to_top: true
+            hint: "L'ordre de la llista és l'ordre a la web: arrossega cada projecte amb la icona de les ratlles (=) per pujar-lo o baixar-lo. Els 3 primers surten a la pàgina d'inici."
             fields:
               - { label: "Títol", name: "title", widget: "string" }
               - { label: "Població", name: "location", widget: "string" }
-              - { label: "Categoria", name: "category", widget: "string", hint: "El text petit en majúscules que surt sobre el títol de la targeta." }
-              - { label: "Data", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true, hint: "Serveix per ordenar: els més recents surten primer." }
+              - { label: "Descripció", name: "description", widget: "text", required: false, hint: "Es mostra a la fitxa del projecte, a sota de la població i la data." }
+              - { label: "Data", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, picker_utc: true, hint: "Es mostra a la fitxa del projecte. Ja no serveix per ordenar." }
               - label: "Etiquetes (per filtrar a «Tots els projectes»)"
                 name: "tags"
                 widget: "relation"

@@ -125,8 +125,7 @@ function servicesHtml(d, a) {
 }
 
 function projectsHtml(d, a) {
-  const items = [...(d.items || [])].sort((x, y) => new Date(y.date || 0) - new Date(x.date || 0));
-  const cards = items.map(p => {
+  const cards = (d.items || []).map(p => {
     const imgs = (p.images || []).map(src => a(src)).filter(Boolean);
     const slides = imgs.length
       ? imgs.map(src => `<div class="slide"><img src="${esc(src)}" alt=""></div>`).join("")
@@ -138,7 +137,6 @@ function projectsHtml(d, a) {
       <article class="project-card">
         <div class="project-carousel"><div class="carousel-slides">${slides}</div>${dots}</div>
         <div class="project-body">
-          <div class="project-category">${esc(p.category)}</div>
           <h3><a class="project-link">${esc(p.title)}</a></h3>
           <div class="project-location">${esc(p.location)}</div>
         </div>

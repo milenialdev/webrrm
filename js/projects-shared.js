@@ -94,7 +94,6 @@ export function projectCard(p) {
         ${controls}
       </div>
       <div class="project-body">
-        <div class="project-category">${esc(p.category)}</div>
         <h3><a class="project-link" href="projecte.html?p=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h3>
         <div class="project-location">${esc(p.location)}</div>
       </div>

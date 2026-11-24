@@ -7,7 +7,7 @@
     {
       "title": "Rehabilitació de façana - Jocs Florals",
       "location": "Badalona",
-      "category": "Rehabilitació integral de façana: treballs de pintura, sanejat de baranes i substitució de trencaigües.",
+      "description": "Rehabilitació integral de façana: treballs de pintura, sanejat de baranes i substitució de trencaigües.",
       "tags": [
         "Façanes",
         "Revestiments",
@@ -25,7 +25,7 @@
     {
       "title": "Rehabilitació de façana i envà pluvial - Josep Vicenç Foix",
       "location": "Badalona",
-      "category": "Façana i aïllament",
+      "description": "Façana i aïllament",
       "tags": [
         "Aïllament",
         "Envà pluvial",
@@ -47,7 +47,7 @@
     {
       "title": "Impermeabilització de terrat - Sant Joaquim",
       "location": "Badalona",
-      "category": "Impermeabilització",
+      "description": "Impermeabilització",
       "tags": [
         "Impermeabilització",
         "Paviments",
@@ -66,7 +66,7 @@
     {
       "title": "Impermeabilització de terrat - Major de Sarrià",
       "location": "Barcelona",
-      "category": "Impermeabilització",
+      "description": "Impermeabilització",
       "tags": [
         "Impermeabilització",
         "Aïllament",
