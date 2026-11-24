@@ -45,22 +45,6 @@
       ]
     },
     {
-      "title": "Impermeabilització de terrat - Major de Sarrià",
-      "location": "Barcelona",
-      "category": "Impermeabilització",
-      "tags": [
-        "Impermeabilització",
-        "Aïllament",
-        "Paviments"
-      ],
-      "date": "2025-09-05",
-      "images": [
-        "/assets/uploads/aïllament-ms-2.webp",
-        "/assets/uploads/aïllament-ms-1.webp",
-        "/assets/uploads/aïllament-ms-3.webp"
-      ]
-    },
-    {
       "title": "Impermeabilització de terrat - Sant Joaquim",
       "location": "Badalona",
       "category": "Impermeanbilització",
@@ -68,7 +52,8 @@
         "Impermeabilització",
         "Paviments",
         "Aïllament",
-        "Treballs en alçada"
+        "Treballs en alçada",
+        "Terrats"
       ],
       "date": "2026-02-01",
       "images": [
@@ -76,6 +61,23 @@
         "/assets/uploads/aillament-sj-2.webp",
         "/assets/uploads/aillament-sj-4.webp",
         "/assets/uploads/aillament-sj-1.webp"
+      ]
+    },
+    {
+      "title": "Impermeabilització de terrat - Major de Sarrià",
+      "location": "Barcelona",
+      "category": "Impermeabilització",
+      "tags": [
+        "Impermeabilització",
+        "Aïllament",
+        "Paviments",
+        "Terrats"
+      ],
+      "date": "2025-09-05",
+      "images": [
+        "/assets/uploads/aïllament-ms-2.webp",
+        "/assets/uploads/aïllament-ms-1.webp",
+        "/assets/uploads/aïllament-ms-3.webp"
       ]
     }
   ]
