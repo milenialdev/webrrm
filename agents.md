@@ -1,92 +1,102 @@
-# agents.md — Web Rehabilitacions Ruiz Marin
+# agents.md — Web Rehabilitacions Ruíz Marín
 
-Documento guía paso a paso para construir y desplegar la web. Pensado para que un agente (Claude Code) lo siga secuencialmente. Cada paso indica si requiere acción humana (cuenta externa, credenciales) o si el agente puede ejecutarlo solo.
+Guía para cualquier agente (Claude Code) que trabaje en este repo. Describe cómo está construida la web, cómo se despliega, qué decisiones se tomaron y por qué, y qué queda pendiente. Si algo de aquí contradice el código, manda el código: corrígelo aquí.
 
-## Stack decidido
+## Qué es
 
-- **Hosting**: Cloudflare Workers con "Static Assets" (gratis, `*.workers.dev`; dominio propio se añadirá más adelante). Cloudflare ha unificado "Pages" dentro de "Workers" en su dashboard nuevo — ya no existe el flujo clásico de Pages, así que el sitio se despliega como un Worker (`wrangler.toml` + `worker.js`) que sirve los archivos estáticos y gestiona las rutas `/api/auth` y `/api/callback` (antes esto se hacía con Cloudflare Pages Functions en `/functions`, ahora retirado).
-- **Contenido editable**: Decap CMS (panel en `/admin`, login con GitHub), backend git → cada guardado en el CMS crea un commit que Cloudflare vuelve a desplegar automáticamente.
-- **Formulario de contacto**: Web3Forms (gratis, sin backend propio, envía directo al email de la empresa). Config se hace una vez; después no requiere mantenimiento ni de ellos ni de nosotros.
-- **Código**: HTML + CSS (Tailwind) estático. Sin framework pesado — mantiene el repo simple para que Decap CMS y Cloudflare Pages funcionen sin fricción.
-- **Repo**: GitHub (necesario tanto para Cloudflare Pages como para el login de Decap CMS).
+Landing en catalán para una empresa familiar de rehabilitación de Badalona. Muestra servicios, proyectos hechos (con fotos y etiquetas) y un formulario de contacto. El equipo de la empresa **no es técnico**: todo el contenido se edita desde un panel (`/admin`) sin tocar código.
 
-## Requisitos previos (acción humana, no del agente)
+- Repo: `github.com/milenialdev/webrrm` (rama `main`).
+- Producción: `https://webrrm.carlosbenitoandev.workers.dev` (dominio propio pendiente).
+- Idioma de la interfaz web y del panel: **catalán**. Con el usuario (el desarrollador), español.
 
-1. Crear cuenta de GitHub (si no existe ya) — la usará el usuario para autenticarse en `/admin`.
-2. Crear cuenta gratuita en Cloudflare (dashboard.cloudflare.com).
-3. Crear cuenta gratuita en Web3Forms (web3forms.com) y obtener el **Access Key** — se necesita el email real de la empresa para que lleguen ahí los mensajes.
+## Stack
 
-Sin estas 3 cosas no se puede completar el despliegue final; el agente puede avanzar con todo lo demás mientras tanto.
+- **Front**: HTML + CSS + JS (módulos ES) estáticos. **Sin build, sin framework.** Los textos viven en JSON y el JS los pinta en el navegador.
+- **Hosting**: Cloudflare **Workers con Static Assets** (gratis). Cloudflare unificó Pages dentro de Workers; no existe el flujo clásico de Pages. `wrangler.toml` sirve la carpeta raíz como assets y `worker.js` atiende `/api/auth` y `/api/callback` (el OAuth del panel) y deja pasar el resto a los assets.
+- **Despliegue**: cada push a `main` despliega solo (Workers Builds, `npx wrangler deploy`). Tarda 1–2 minutos. Los commits que hace el CMS también despliegan.
+- **CMS**: Decap CMS 3.16+ con backend `github` (login con GitHub OAuth). Panel en `/admin`.
+- **Formulario**: Web3Forms (clave pública en `index.html`, restringida a dominios en el panel de Web3Forms; el dominio de producción debe estar permitido). Los mensajes llegan al correo de la empresa.
 
-## Paso 1 — Estructura del proyecto
+## Mapa del repo
 
-- Inicializar repo git local (`git init`).
-- Crear estructura:
-  - `index.html` — landing principal.
-  - `/assets/` — imágenes, iconos.
-  - `/css/` — estilos (Tailwind compilado o CDN, a decidir según necesidad de build).
-  - `/admin/` — `index.html` + `config.yml` de Decap CMS.
-  - `/content/` — archivos Markdown/JSON que Decap CMS edita (proyectos, servicios, textos de secciones, datos de contacto).
-- Crear `README.md` corto con instrucciones de cómo el equipo entra a editar la web (link a `/admin`, cómo hacer login).
+```
+index.html            Landing (cabecera, portada, servicios, "Qui som", projectes, contacto, pie)
+projectes.html        Todos los proyectos + filtro por etiqueta (acepta ?tag=Etiqueta)
+projecte.html         Ficha de un proyecto (?p=slug-del-titulo)
+css/styles.css        Todo el CSS (variables en :root)
+js/render.js          Pinta la landing (lee content/*.json)
+js/projects-page.js   Lista y filtros de projectes.html
+js/project-detail.js  Ficha del proyecto (galería, etiquetas clicables)
+js/projects-shared.js Utilidades compartidas: cargar JSON, slugs, tarjeta, carrusel, menú móvil, protección de fotos rotas
+js/icons.js           Iconos SVG de línea (servicios y contacto)
+content/site.json     Portada, "Qui som" (+ foto y cifras), contacto, pie
+content/services.json Servicio destacado + tarjetas del carrusel
+content/projects.json Proyectos (el ORDEN del array es el orden en la web)
+content/tags.json     Lista de etiquetas que se pueden elegir en los proyectos
+admin/index.html      Carga Decap, registra el catalán ("Afegir" en vez de "Add") y la vista previa
+admin/config.yml      Esquema del CMS (colecciones, campos, textos de ayuda)
+admin/preview.js      Vista previa en vivo del panel (reutiliza css/styles.css y js/icons.js)
+assets/               Logo (SVG vectorizado), favicons, uploads/ (fotos subidas desde el CMS)
+worker.js, wrangler.toml, .assetsignore   Cloudflare
+scripts/dev-server.js Servidor estático local
+```
 
-## Paso 2 — Maquetar la landing (diseño de referencia: mockup compartido)
+## Modelo de contenido (lo que edita el CMS)
 
-Secciones, en este orden, replicando la imagen de referencia:
-1. Header fijo: logo + nav (Inici, Serveis, Projectes, Nosaltres) + botón "Demana pressupost".
-2. Hero: titular + subtítulo + 2 CTAs + imagen/foto de proyecto destacado.
-3. Servicios: grid de tarjetas (Rehabilitació de Façanes, Reformes Integrals, Impermeabilització, Aïllament Tèrmic SATE, Comunitats de Veïns, +Serveis Especialitzats).
-4. Quiénes somos: bloque oscuro con fotos + texto + cifras (proyectos completados, % satisfacción, años, subcontratas).
-5. Proceso: 4 pasos (Consulta inicial, Pressupost detallat, Execució de l'obra, Lliurament i garantia).
-6. Contacto: datos de la empresa (dirección, teléfono, email, horario) + formulario (Web3Forms).
-7. Footer: enlaces, datos legales.
+- `site.json`: `hero` (título en 5 piezas + subtítulo + 2 botones + `image`), `about` (texto, frase, `photo{label,image}`, `stats[]`), `contact`, `footer`. La sección `process` ("Com treballem") sigue en el JSON pero está **oculta** (`hidden` en `index.html`) y fuera del CMS: puede volver.
+- `services.json`: `featured` (servicio grande con `icon` e `image`) e `items[]` (`title`, `icon`, `text`, `style`: `light` | `dark-teal` | `terracotta`). `icon` es una **clave** (`building`, `droplet`, `sun`, `people`, `document`, `brush`, `beam`), no un emoji.
+- `projects.json`: `items[]` con `title`, `location`, `description`, `date`, `tags[]`, `images[]` (máx. 5). **El orden del array es el orden de la web** (los 3 primeros salen en la landing); se cambia arrastrando en el panel. `date` solo se muestra en la ficha.
+- `tags.json`: `tags[].name`. Los proyectos las eligen con un `relation`; los nombres deben coincidir exactamente.
 
-Paleta: crema `#F1EAE3`, azul del logo `#0094B2` (variante oscura `#006B80`), terracota `#B5623A`, negro-verdoso oscuro `#12211E` para secciones oscuras. Tipografía serif itálica para acentos ("solució", "la teva llar"), sans-serif para el resto.
+Slug de un proyecto = título normalizado (sin acentos, con guiones). **Cambiar un título cambia su URL.**
 
-Todo el texto e imágenes de esta maquetación deben salir de los archivos en `/content/`, no estar hardcodeados en el HTML — así Decap CMS puede editarlos.
+## Reglas del proyecto
 
-## Paso 3 — Formulario de contacto (Web3Forms)
+- Todo texto o imagen visible debe salir de `content/`, nunca hardcodeado, para que el CMS lo pueda editar.
+- No añadir paso de build ni framework sin hablarlo: el equipo y el despliegue dependen de que sea estático.
+- Si añades un campo al JSON, añádelo a `admin/config.yml` y, si se ve en una vista previa, a `admin/preview.js`.
+- Imágenes: el CMS las convierte a WebP, máx. 1600 px de ancho, calidad 80, en el navegador al subirlas (`media_processing`). Borrar una foto de "Multimèdia" **no** la quita de las listas de los proyectos; por eso la web descarta automáticamente las fotos que no cargan.
+- **Accesibilidad**: se midió el contraste de todos los textos (0 fallos). Los botones son azul `#0094B2` con texto oscuro `#0A1B20` (el blanco sobre ese azul no llega a 4,5:1). Terracota `#A5552F`. Respetar `prefers-reduced-motion`. Mantener enlace "Salta al contingut", `aria-*` del menú móvil y campos del formulario con `aria-describedby`/`aria-invalid`.
+- Paleta: crema `#F3ECE4`, azul del logo `#0094B2` (oscuro `#006B80`, hover de botón `#19A6C3`), terracota `#A5552F`, casi negro `#12211E`. Titulares en serif (Georgia) con acentos en cursiva.
 
-- Formulario HTML plano con `action="https://api.web3forms.com/submit"`, método POST, campo hidden `access_key` con la key obtenida en el paso previo.
-- Campos: nombre, teléfono, email, tipo de servicio, mensaje.
-- Añadir honeypot anti-spam (campo oculto que Web3Forms recomienda) y `redirect`/mensaje de éxito in-page vía `fetch` + JS simple, sin recargar página.
-- Probar un envío real antes de dar por cerrado este paso.
+## Desarrollo en local
 
-## Paso 4 — Configurar Decap CMS
+```bash
+npm run dev          # http://localhost:5173 (node scripts/dev-server.js)
+```
 
-- `/admin/index.html`: carga el script de Decap CMS.
-- `/admin/config.yml`: backend `github`, repo del proyecto, rama `main`; colecciones para:
-  - Servicios (título, descripción, icono/imagen, orden).
-  - Proyectos/galería (título, fotos, descripción corta).
-  - Textos generales (hero, quiénes somos, cifras, proceso).
-  - Datos de contacto (dirección, teléfono, email, horario).
-- Configurar OAuth para GitHub: Decap CMS con backend `github` necesita un proveedor OAuth. Implementado en `worker.js`, que gestiona las rutas `/api/auth` y `/api/callback` usando un GitHub OAuth App (esto lo crea el usuario en GitHub Settings → Developer settings, es gratis) y las variables de entorno `OAUTH_CLIENT_ID` / `OAUTH_CLIENT_SECRET` configuradas en el proyecto de Cloudflare.
-- Documentar en el README exactamente cómo entrar a `/admin` y qué se puede editar.
+Para probar el panel sin login (no toques producción):
+1. Crea `admin/local-config.yml` = `local_backend: true` + el contenido de `admin/config.yml`, y `admin/local-index.html` = `admin/index.html` con `<link href="local-config.yml" type="text/yaml" rel="cms-config-url">` dentro de `<head>`. Ambos están ignorados por git (`admin/local-*`).
+2. Arranca `npx decap-server` (puerto 8081) y abre `http://localhost:5173/admin/local-index.html`.
+3. **Publicar en ese panel escribe en los archivos del proyecto.** Para probar solo arrastres o vistas previas, no publiques; si publicas, revierte con git.
+4. Al terminar, para el servidor y borra los dos archivos `local-*`.
 
-## Paso 5 — Desplegar en Cloudflare (Workers + Static Assets)
+## Flujo de trabajo con git
 
-1. Subir el repo a GitHub (requiere que el usuario tenga la cuenta creada del paso previo).
-2. En Cloudflare dashboard: Compute → Workers & Pages → Create → conectar el repo `milenialdev/webrrm`.
-3. En "Set up your application": Build command vacío, Deploy command `npx wrangler deploy` (por defecto). El `wrangler.toml` del repo ya define los static assets y el Worker que los sirve.
-4. Deploy. Verificar la URL `*.workers.dev` resultante.
-5. Actualizar `admin/config.yml` (`base_url`) con la URL real.
-6. Crear la GitHub OAuth App (Homepage URL y Callback URL = esa URL + `/api/callback`) y añadir `OAUTH_CLIENT_ID` / `OAUTH_CLIENT_SECRET` como variables de entorno del proyecto en Cloudflare.
-7. Añadir esa URL a los dominios permitidos de la clave de Web3Forms.
-8. Probar en producción: navegación, formulario, panel `/admin` con login real.
+- El equipo publica desde `/admin` → commits directos a `main` (autor "Carlos", mensajes "Update …"). **Haz `git pull --rebase origin main` antes de empezar y antes de cada push.**
+- El usuario pide los commits y pushes explícitamente. No hagas push sin que lo pida; cuando es un cambio visual, enséñale antes el resultado.
+- Al terminar un commit: mensaje en catalán o español, terminado con la línea `Co-Authored-By` que indique el entorno.
 
-## Paso 6 — Entrega y prueba con el usuario
+## Infraestructura y cuentas (no hay secretos aquí)
 
-- Enviar la URL al usuario para que la revise junto con el familiar.
-- Enseñar cómo entrar a `/admin`, editar un texto y ver que se publica solo (redeploy automático de Cloudflare Pages tras cada commit del CMS).
-- Recoger feedback de diseño/contenido y ajustar.
+- **GitHub OAuth App** del panel: su Client ID es público y está en `wrangler.toml` (`[vars]`). El Client Secret está como secret del Worker (se subió con `wrangler secret put OAUTH_CLIENT_SECRET`). Las variables de la sección "Builds" del dashboard de Cloudflare **no llegan al Worker en ejecución**; por eso el Client ID va en `wrangler.toml`.
+- Callback de la OAuth App: `https://webrrm.carlosbenitoandev.workers.dev/api/callback`. `admin/config.yml` tiene la misma URL en `base_url`.
+- **Si se compra un dominio propio**, actualizar: `base_url` en `admin/config.yml`, la Homepage/Callback URL de la OAuth App, los dominios permitidos en Web3Forms y `site_url`. No crear cuentas externas en nombre del usuario: se lo pides y te pasa lo necesario.
 
-## Paso 7 — Dominio propio (futuro, cuando estén contentos)
+## Pendiente / ideas
 
-- Comprar dominio (en Cloudflare Registrar o donde prefieran).
-- Cloudflare Pages → Custom domains → añadir dominio, Cloudflare gestiona el DNS automáticamente al estar en la misma cuenta.
+1. **Login del panel con email y contraseña (sin GitHub).** La empresa no tiene GitHub y el doble factor les supera. Recomendado: Netlify Identity + Git Gateway (gratis, solo como servicio de login; la web sigue en Cloudflare; registro "solo por invitación"; backend `git-gateway`). Alternativa: sistema propio en Cloudflare (D1 + Workers + proxy backend de Decap + envío de emails); es bastante más trabajo y el envío de invitaciones exige dominio propio verificado. El usuario aún no ha elegido; mientras tanto el login es con GitHub.
+2. Dominio propio cuando estén contentos con la web.
+3. Reescribir las descripciones de 3 proyectos que son una sola palabra (antes eran "categoría").
+4. `README.md` (para el equipo, en catalán) está desfasado: menciona secciones y botones antiguos del panel. Actualizarlo.
+5. Accesibilidad pendiente: no se ha probado con lector de pantalla ni al 200 % de zoom; encabezados H4 del pie tras un H2 y secciones sin nombre propio.
+6. Las tarjetas de proyecto ya no muestran categoría (el campo ahora es la descripción, solo visible en la ficha). El usuario puede querer mostrar la primera etiqueta o un extracto.
 
-## Notas para el agente que ejecute esto
+## Trampas conocidas
 
-- No crear cuentas externas (GitHub, Cloudflare, Web3Forms) en nombre del usuario — pedirle que las cree él y que pase las credenciales/keys necesarias en el chat.
-- Todo el contenido debe vivir en `/content/`, nunca hardcodeado, para que el CMS funcione.
-- Verificar visualmente en navegador (dev server o preview) cada sección contra el mockup antes de dar el paso por completado.
-- Antes de hacer push a GitHub o desplegar, confirmar con el usuario.
+- En el navegador integrado de Claude, las capturas tras hacer scroll pueden salir en blanco o duplicadas. Soluciones: traer la pestaña al frente (`tabs_select`) y/o cambiar el tamaño de la ventana en 1 px para forzar un repintado. Para medir cosas, usa `javascript_exec` (getBoundingClientRect, comprobar el DOM).
+- En PowerShell, `$home` es una variable reservada: no la uses como variable propia. Escribe los archivos con `UTF8Encoding($false)` (sin BOM) para no corromper los acentos.
+- Los avisos "LF will be replaced by CRLF" de git en Windows son normales.
+- El scroll suave (`scroll-behavior: smooth`) hace que pruebas de posición con JavaScript den valores intermedios; espera o usa `behavior: "instant"`.
+- Descubierto el 2026-09: la ejecución de scripts de PowerShell puede estar bloqueada; usa `cmd`/`npx.cmd` o `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
